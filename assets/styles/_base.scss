@@ -1,0 +1,32 @@
+body {
+  height: 100vh;
+  @extend .blue, .darken-4;
+
+  .loader-wrapper {
+    position: relative;
+    height: 100vh;
+  }
+  .loader-wrapper,
+  .todo-loader {
+    .preloader-wrapper {
+      margin: 0 auto;
+    }
+  }
+  .todo-loader {
+    position: relative;
+    min-height: 250px;
+  }
+
+  table {
+    tbody {
+      tr.completed {
+        background-color: #CECECE !important;
+
+        td:first-of-type {
+          text-decoration: line-through;
+          @extend .grey-text, .text-darken-2;
+        }
+      }
+    }
+  }
+}

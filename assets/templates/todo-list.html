@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card white darken-1">
+      <div class="card-content black-text">
+
+        <div class="loading-overlay" *ngIf="loading">
+          <div class="valign-wrapper todo-loader">
+            <div class="preloader-wrapper big active valign">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table *ngIf="toDos.length > 0 && !loading">
+          <thead>
+            <tr>
+              <th data-field="name">Task Name</th>
+              <th data-field="actions"></th>
+            </tr>
+          </thead>
+          <tbody [sortablejs]="toDos" [sortablejsOptions]="options">
+            <tr class="todo-listing white darken-1" [ngClass]="{'completed' : item.complete }" *ngFor="let item of toDos; let i = index" [information]="item" (toDoDeleted)="deleteToDo($event, i)" (toDoCompleted)="completeToDo($event, i)"></tr>
+          </tbody>
+        </table>
+
+        <div class="row" *ngIf="toDos.length === 0 && !loading">
+          <div class="col s12">
+            <h4 class="center-align">No To-Do's are available</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <button type="button" (click)="showAdd()" class="btn-floating btn-large blue lighten-2 modal-trigger waves-effect waves-circle">
+    <i class="large material-icons">add</i>
+  </button>
+</div>
+
+<div id="add-modal" class="modal">
+  <div class="modal-content">
+    <h4>Add a new To-Do</h4>
+    <div class="row">
+      <div class="col sm12">
+        <form name="todo-form" (ngSubmit)="addToDo()">
+          <div class="input-field col s12">
+            <input id="task" name="task" [(ngModel)]="formData.task" type="text" class="validate" required>
+            <label for="task">Task</label>
+          </div>
+          <div class="col s12">
+            <p for="category">Task Category</p>
+            <select class="browser-default" id="category" name="category" [(ngModel)]="formData.category">
+              <option *ngFor="let category of categoryOptions" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <button type="submit" class="btn waves-light blue" [disabled]="thinking">Create</button>
+            <button type="button" class="btn waves-light btn-flat modal-action modal-close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
