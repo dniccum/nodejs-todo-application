@@ -20,6 +20,8 @@ module.exports = {
     }, function toDoCreated(err, newToDo) {
 	    if (err) return res.negotiate(err);
 
+	    // ToDo.publishCreate(newToDo.id, newToDo);
+
 	    return res.ok(newToDo);
     });
   },
@@ -51,6 +53,8 @@ module.exports = {
       });
     }
 
+    // ToDo.publishUpdate('', null);
+
     return res.ok();
   },
   delete: function(req, res) {
@@ -63,7 +67,14 @@ module.exports = {
         id: req.param('id')
       }).exec(function() {
         return res.ok();
-      })
+      });
+    });
+  },
+  subscribe: function(req, res) {
+    ToDo.find(function ToDoList(err, toDos) {
+      if (err) return next(err);
+
+      ToDo.subscribe(req, toDos);
     });
   }
 };
