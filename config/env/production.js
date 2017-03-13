@@ -17,6 +17,9 @@ module.exports = {
     rest: false,
     shortcuts: false
   },
+  session: {
+    url: 'mongodb://localhost/nodejs-todo'
+  },
 
   /***************************************************************************
    * Set the default database connection for models in the production        *
