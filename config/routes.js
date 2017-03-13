@@ -47,6 +47,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /api/todo': 'ToDoController.find',
+  'GET /api/todo/subscribe': 'ToDoController.subscribe',
   'POST /api/todo': 'ToDoController.create',
   'PUT /api/todo': 'ToDoController.update',
   'PUT /api/todo/update-group': 'ToDoController.updateGroup',
