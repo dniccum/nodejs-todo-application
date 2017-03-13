@@ -42,7 +42,6 @@ let ToDoListComponent = class ToDoListComponent {
         this.apiService.getAllToDos().then((response) => {
             this.loading = false;
             this.toDos = response;
-            console.log(response);
         }, error => function () {
             Materialize.toast('There was a problem with your email.', 4000, 'red');
             $('#completionModal').modal().modal('open');

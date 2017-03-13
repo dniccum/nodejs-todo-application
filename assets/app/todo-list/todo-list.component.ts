@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { ToDo } from '../classes/ToDo';
 import {SortablejsOptions} from "angular-sortablejs";
 import { ApiService } from "../services/api.service";
@@ -46,7 +46,6 @@ export class ToDoListComponent implements OnInit {
             (response: Array<ToDo>) => {
                 this.loading = false;
                 this.toDos = response;
-                console.log(response);
             },
             error => function() {
                 Materialize.toast('There was a problem with your email.', 4000, 'red');
