@@ -91,6 +91,12 @@
 
     <% include partials/angular-2-partials.ejs %>
 
+    <%if (settings.env === 'production') { %>
+      <script>
+        window.inProduction = true;
+      </script>
+    <% } %>
+
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/dependencies/jquery.min.js"></script>

@@ -15,6 +15,10 @@ const app_component_1 = require("./app.component");
 const todo_list_component_1 = require("./todo-list/todo-list.component");
 const todo_listing_component_1 = require("./todo-list/todo-listing.component");
 const api_service_1 = require("./services/api.service");
+// TESTS ENVIRONMENT MODE
+if (window["inStaging"] || window["inProduction"]) {
+    core_1.enableProdMode();
+}
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
